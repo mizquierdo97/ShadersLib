@@ -60,6 +60,12 @@ namespace ShaderLib {
 
 		SHADERS_API bool LoadProgram();
 
+		SHADERS_API bool Bind();
+
+		SHADERS_API void Unbind();
+
+
+
 	public:
 		char* name = nullptr;
 
