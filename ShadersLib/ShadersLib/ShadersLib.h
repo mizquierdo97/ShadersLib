@@ -23,7 +23,14 @@ namespace ShaderLib {
 		geometry,
 		vertex,
 	};
+	
 
+	struct UniformVar {
+		
+		char name[64] = "0";
+		GLenum type = GL_ZERO;		
+
+	};
 
 	class Shader {
 	public:
@@ -64,10 +71,13 @@ namespace ShaderLib {
 
 		SHADERS_API void Unbind();
 
+		SHADERS_API UniformVar GetVariableInfo(uint index);
+
+		SHADERS_API GLint GetVariablesSize()const;
 
 
 	public:
-		char* name = nullptr;
+		std::string name;
 
 		uint programID = 0;
 
@@ -77,8 +87,6 @@ namespace ShaderLib {
 
 	};
 
-	// This class is exported from the MathLibrary.dll  
-	
 
 	class Functions
 	{
@@ -87,8 +95,10 @@ namespace ShaderLib {
 		
 		 SHADERS_API ShaderProgram* CreateShader(char* name);
 
-		SHADERS_API uint CompileShader(std::string path, ShaderType type);
-		// Returns a + b  
+		 SHADERS_API ShaderProgram* CreateDefaultShader();
+
+		 SHADERS_API Shader* CompileShader(std::string path, ShaderType type);
+	 
 		 SHADERS_API void AddShaderList(Shader* newShader);
 		
 
@@ -96,10 +106,6 @@ namespace ShaderLib {
 		 std::list<Shader*> shaders;
 		 std::list<ShaderProgram*> programs;
 	};
-
-
-	
-
 
 }
 
